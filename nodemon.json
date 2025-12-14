@@ -1,0 +1,17 @@
+{
+    "watch": [
+        "server/",
+        "config/"
+    ],
+    "ext": "js,json",
+    "ignore": [
+        "node_modules/",
+        "*.test.js",
+        "*.spec.js"
+    ],
+    "exec": "node server/server.js",
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "delay": 1000
+}
