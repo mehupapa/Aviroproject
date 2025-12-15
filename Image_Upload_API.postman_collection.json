@@ -1,0 +1,280 @@
+{
+    "info": {
+        "_postman_id": "image-upload-api",
+        "name": "Image Upload API",
+        "description": "Global Image Upload and Management API for Vercel/Platform",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Images",
+            "item": [
+                {
+                    "name": "Upload Image",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "image",
+                                    "type": "file",
+                                    "src": [],
+                                    "description": "Image file to upload (JPEG, PNG, GIF, WebP, SVG, etc.)"
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "My Image",
+                                    "type": "text",
+                                    "description": "Optional: Custom name for the image"
+                                },
+                                {
+                                    "key": "category",
+                                    "value": "image",
+                                    "type": "text",
+                                    "description": "Optional: Category (icon, image, logo, background, avatar, banner, thumbnail, other)"
+                                },
+                                {
+                                    "key": "tags",
+                                    "value": "tag1, tag2, tag3",
+                                    "type": "text",
+                                    "description": "Optional: Comma-separated tags"
+                                },
+                                {
+                                    "key": "description",
+                                    "value": "Image description",
+                                    "type": "text",
+                                    "description": "Optional: Description of the image"
+                                },
+                                {
+                                    "key": "alt",
+                                    "value": "Alt text for image",
+                                    "type": "text",
+                                    "description": "Optional: Alt text for accessibility"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/images/upload",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "images",
+                                "upload"
+                            ]
+                        },
+                        "description": "Upload an image file. Max size: 10MB. Supported formats: JPEG, PNG, GIF, WebP, SVG, BMP, TIFF"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Images",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/images?category=&status=&search=&tags=",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "images"
+                            ],
+                            "query": [
+                                {
+                                    "key": "category",
+                                    "value": "",
+                                    "description": "Optional: Filter by category (icon, image, logo, background, avatar, banner, thumbnail, other)"
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "description": "Optional: Filter by status (active, archived, deleted)"
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "Optional: Search by name, description, or alt text"
+                                },
+                                {
+                                    "key": "tags",
+                                    "value": "",
+                                    "description": "Optional: Filter by tags (comma-separated)"
+                                }
+                            ]
+                        },
+                        "description": "Get all images with optional filters"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Images by Category",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/images?category=icon",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "images"
+                            ],
+                            "query": [
+                                {
+                                    "key": "category",
+                                    "value": "icon",
+                                    "description": "Category: icon, image, logo, background, avatar, banner, thumbnail, other"
+                                }
+                            ]
+                        },
+                        "description": "Get images filtered by category"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Image By ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/images/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "images",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Image ID"
+                                }
+                            ]
+                        },
+                        "description": "Get a single image by its ID"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Image Metadata",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Updated Image Name\",\n    \"category\": \"logo\",\n    \"tags\": [\"logo\", \"brand\", \"company\"],\n    \"description\": \"Updated description\",\n    \"alt\": \"Updated alt text\",\n    \"status\": \"active\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/images/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "images",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Image ID"
+                                }
+                            ]
+                        },
+                        "description": "Update image metadata (name, category, tags, description, alt, status)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Image",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/images/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "images",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Image ID"
+                                }
+                            ]
+                        },
+                        "description": "Delete an image (removes file and database record)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Bulk Delete Images",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"ids\": [\n        \"image_id_1\",\n        \"image_id_2\",\n        \"image_id_3\"\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/images/bulk",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "images",
+                                "bulk"
+                            ]
+                        },
+                        "description": "Delete multiple images at once"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Global image upload and management endpoints"
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:5001",
+            "type": "string"
+        }
+    ]
+}
