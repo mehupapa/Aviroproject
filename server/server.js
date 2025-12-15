@@ -153,9 +153,13 @@ app.get('/', (req, res) => {
 // API Routes
 const appRoutes = require('../appManagement/routes/appRoutes');
 const screenRoutes = require('../appManagement/routes/screenRoutes');
+const componentRoutes = require('../componentManagement/routes/componentRoutes');
+const componentTypeRoutes = require('../componentManagement/routes/componentTypeRoutes');
 
 app.use('/api/apps', appRoutes);
 app.use('/api/screens', screenRoutes);
+app.use('/api/components', componentRoutes);
+app.use('/api/component-types', componentTypeRoutes);
 
 // Basic error handling middleware
 app.use((req, res, next) => {

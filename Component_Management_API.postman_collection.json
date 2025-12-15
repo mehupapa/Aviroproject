@@ -1,0 +1,403 @@
+{
+    "info": {
+        "_postman_id": "component-management-api",
+        "name": "Component Management API",
+        "description": "Zero-Code Platform - Dynamic Component Management API with CSS Properties",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Components",
+            "item": [
+                {
+                    "name": "Create Button Component",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"screenId\": \"screen_id_here\",\n    \"applicationId\": \"app_id_here\",\n    \"type\": \"button\",\n    \"data\": {\n        \"label\": \"Click Me\"\n    },\n    \"position\": {\n        \"x\": 100,\n        \"y\": 200\n    },\n    \"styles\": {\n        \"margin\": \"10px\",\n        \"padding\": \"15px 30px\",\n        \"backgroundColor\": \"#0766ff\",\n        \"color\": \"#ffffff\",\n        \"borderRadius\": \"8px\",\n        \"fontSize\": \"16px\",\n        \"fontWeight\": \"bold\",\n        \"textAlign\": \"center\",\n        \"width\": \"auto\",\n        \"height\": \"auto\"\n    },\n    \"properties\": {\n        \"text\": \"Submit\",\n        \"onClick\": \"handleSubmit\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/components",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components"
+                            ]
+                        },
+                        "description": "Create a button component with dynamic CSS properties"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Input Component",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"screenId\": \"screen_id_here\",\n    \"applicationId\": \"app_id_here\",\n    \"type\": \"input\",\n    \"data\": {\n        \"label\": \"Email Input\"\n    },\n    \"position\": {\n        \"x\": 100,\n        \"y\": 300\n    },\n    \"styles\": {\n        \"margin\": \"10px 0\",\n        \"padding\": \"12px\",\n        \"width\": \"100%\",\n        \"height\": \"40px\",\n        \"border\": \"1px solid #dbdee3\",\n        \"borderRadius\": \"8px\",\n        \"fontSize\": \"14px\",\n        \"backgroundColor\": \"#ffffff\"\n    },\n    \"properties\": {\n        \"placeholder\": \"Enter your email\",\n        \"type\": \"email\",\n        \"required\": true\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/components",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components"
+                            ]
+                        },
+                        "description": "Create an input component with dynamic CSS properties"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Textarea Component",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"screenId\": \"screen_id_here\",\n    \"applicationId\": \"app_id_here\",\n    \"type\": \"textarea\",\n    \"data\": {\n        \"label\": \"Message Textarea\"\n    },\n    \"position\": {\n        \"x\": 100,\n        \"y\": 400\n    },\n    \"styles\": {\n        \"margin\": \"10px 0\",\n        \"padding\": \"12px\",\n        \"width\": \"100%\",\n        \"height\": \"120px\",\n        \"border\": \"1px solid #dbdee3\",\n        \"borderRadius\": \"8px\",\n        \"fontSize\": \"14px\",\n        \"resize\": \"vertical\"\n    },\n    \"properties\": {\n        \"placeholder\": \"Enter your message\",\n        \"rows\": 5\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/components",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components"
+                            ]
+                        },
+                        "description": "Create a textarea component with dynamic CSS properties"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Container Component",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"screenId\": \"screen_id_here\",\n    \"applicationId\": \"app_id_here\",\n    \"type\": \"container\",\n    \"data\": {\n        \"label\": \"Main Container\"\n    },\n    \"position\": {\n        \"x\": 0,\n        \"y\": 0\n    },\n    \"styles\": {\n        \"display\": \"flex\",\n        \"flexDirection\": \"column\",\n        \"justifyContent\": \"center\",\n        \"alignItems\": \"center\",\n        \"width\": \"100%\",\n        \"height\": \"100vh\",\n        \"padding\": \"20px\",\n        \"gap\": \"20px\",\n        \"backgroundColor\": \"#eeeff2\"\n    },\n    \"properties\": {}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/components",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components"
+                            ]
+                        },
+                        "description": "Create a container component with flexbox layout"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Components",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/components?screenId=&applicationId=&type=&status=",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components"
+                            ],
+                            "query": [
+                                {
+                                    "key": "screenId",
+                                    "value": "",
+                                    "description": "Optional: Filter by screen ID"
+                                },
+                                {
+                                    "key": "applicationId",
+                                    "value": "",
+                                    "description": "Optional: Filter by application ID"
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "",
+                                    "description": "Optional: Filter by component type (button, input, textarea, etc.)"
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "description": "Optional: Filter by status (draft, published, archived)"
+                                }
+                            ]
+                        },
+                        "description": "Get all components with optional filters"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Components By Screen",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/components/screen/:screenId",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components",
+                                "screen",
+                                ":screenId"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "screenId",
+                                    "value": "",
+                                    "description": "Screen ID"
+                                }
+                            ]
+                        },
+                        "description": "Get all components for a specific screen"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Component By ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/components/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component ID"
+                                }
+                            ]
+                        },
+                        "description": "Get a single component by its ID"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Component",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"type\": \"button\",\n    \"data\": {\n        \"label\": \"Updated Button\"\n    },\n    \"position\": {\n        \"x\": 150,\n        \"y\": 250\n    },\n    \"styles\": {\n        \"margin\": \"15px\",\n        \"padding\": \"20px 40px\",\n        \"backgroundColor\": \"#ff073d\",\n        \"color\": \"#ffffff\",\n        \"borderRadius\": \"12px\",\n        \"fontSize\": \"18px\"\n    },\n    \"properties\": {\n        \"text\": \"Updated Text\",\n        \"onClick\": \"handleClick\"\n    },\n    \"order\": 1,\n    \"hidden\": false,\n    \"status\": \"published\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/components/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component ID"
+                                }
+                            ]
+                        },
+                        "description": "Update a component (all fields optional)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Component Styles Only",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"styles\": {\n        \"margin\": \"20px\",\n        \"padding\": \"15px 30px\",\n        \"backgroundColor\": \"#0766ff\",\n        \"color\": \"#ffffff\",\n        \"borderRadius\": \"10px\",\n        \"fontSize\": \"16px\",\n        \"fontWeight\": \"bold\",\n        \"boxShadow\": \"0 4px 6px rgba(0, 0, 0, 0.1)\",\n        \"transition\": \"all 0.3s ease\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/components/:id/styles",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components",
+                                ":id",
+                                "styles"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component ID"
+                                }
+                            ]
+                        },
+                        "description": "Update only the CSS styles of a component"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Component Position (Drag)",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"position\": {\n        \"x\": 200,\n        \"y\": 300\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/components/:id/position",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components",
+                                ":id",
+                                "position"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component ID"
+                                }
+                            ]
+                        },
+                        "description": "Update component position when dragging in React Flow"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Component",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/components/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "components",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component ID"
+                                }
+                            ]
+                        },
+                        "description": "Delete a component (also deletes all child components)"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Dynamic component management endpoints with CSS properties"
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:5001",
+            "type": "string"
+        }
+    ]
+}

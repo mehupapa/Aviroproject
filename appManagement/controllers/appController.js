@@ -1,42 +1,74 @@
 const App = require('../models/appModel');
+const {
+    sendCreated,
+    sendSuccess,
+    sendNotFound,
+    sendUpdated,
+    sendDeleted,
+    sendValidationError,
+    handleError
+} = require('../../utils/responseHelper');
 
 // @desc    Create a new app
 // @route   POST /api/apps
 // @access  Public
 const createApp = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name, theme } = req.body;
 
         if (!name) {
-            return res.status(400).json({
-                status: 'error',
-                message: 'App name is required'
-            });
+            return sendValidationError(res, 'App name is required');
         }
 
         // Check if app name already exists
         const existingApp = await App.findOne({ name: name.trim() });
         if (existingApp) {
-            return res.status(400).json({
-                status: 'error',
-                message: 'App name already exists'
-            });
+            return sendValidationError(res, 'App name already exists');
         }
 
-        const app = await App.create({
-            name: name.trim()
-        });
+        // Default theme object
+        const defaultTheme = {
+            colors: {
+                primary: '#0766ff',
+                primaryContent: '#ffffff',
+                primaryDark: '#0051d3',
+                primaryLight: '#3a85ff',
+                secondary: '#ff073d',
+                secondaryContent: '#ffffff',
+                secondaryDark: '#d3002e',
+                secondaryLight: '#ff3a65',
+                background: '#eeeff2',
+                foreground: '#fbfbfc',
+                border: '#dbdee3',
+                copy: '#21252b',
+                copyLight: '#596373',
+                copyLighter: '#7e899b',
+                success: '#07ff07',
+                warning: '#ffff07',
+                error: '#ff0707',
+                successContent: '#000700',
+                warningContent: '#070700',
+                errorContent: '#ffffff'
+            },
+            radius: {
+                button: '8',
+                input: '8',
+                card: '12',
+                general: '10'
+            },
+            version: '1.0'
+        };
 
-        res.status(201).json({
-            status: 'success',
-            message: 'App created successfully',
-            data: app
-        });
+        const appData = {
+            name: name.trim(),
+            theme: theme || defaultTheme // Always set theme - use provided or default
+        };
+
+        const app = await App.create(appData);
+
+        return sendCreated(res, app, 'App created successfully');
     } catch (error) {
-        res.status(500).json({
-            status: 'error',
-            message: error.message || 'Failed to create app'
-        });
+        return handleError(res, error, 'Failed to create app');
     }
 };
 
@@ -56,16 +88,9 @@ const getAllApps = async (req, res) => {
             .sort({ createdAt: -1 })
             .select('-__v');
 
-        res.status(200).json({
-            status: 'success',
-            count: apps.length,
-            data: apps
-        });
+        return sendSuccess(res, apps);
     } catch (error) {
-        res.status(500).json({
-            status: 'error',
-            message: error.message || 'Failed to fetch apps'
-        });
+        return handleError(res, error, 'Failed to fetch apps');
     }
 };
 
@@ -77,27 +102,12 @@ const getAppById = async (req, res) => {
         const app = await App.findById(req.params.id).select('-__v');
 
         if (!app) {
-            return res.status(404).json({
-                status: 'error',
-                message: 'App not found'
-            });
+            return sendNotFound(res, 'App not found');
         }
 
-        res.status(200).json({
-            status: 'success',
-            data: app
-        });
+        return sendSuccess(res, app);
     } catch (error) {
-        if (error.name === 'CastError') {
-            return res.status(400).json({
-                status: 'error',
-                message: 'Invalid app ID'
-            });
-        }
-        res.status(500).json({
-            status: 'error',
-            message: error.message || 'Failed to fetch app'
-        });
+        return handleError(res, error, 'Failed to fetch app');
     }
 };
 
@@ -106,49 +116,31 @@ const getAppById = async (req, res) => {
 // @access  Public
 const updateApp = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name, theme } = req.body;
 
         const app = await App.findById(req.params.id);
 
         if (!app) {
-            return res.status(404).json({
-                status: 'error',
-                message: 'App not found'
-            });
+            return sendNotFound(res, 'App not found');
         }
 
         // Check if new name already exists (if name is being changed)
         if (name && name.trim() !== app.name) {
             const existingApp = await App.findOne({ name: name.trim() });
             if (existingApp) {
-                return res.status(400).json({
-                    status: 'error',
-                    message: 'App name already exists'
-                });
+                return sendValidationError(res, 'App name already exists');
             }
         }
 
         // Update fields
         if (name) app.name = name.trim();
+        if (theme) app.theme = theme; // Update full theme object
 
         await app.save();
 
-        res.status(200).json({
-            status: 'success',
-            message: 'App updated successfully',
-            data: app
-        });
+        return sendUpdated(res, app, 'App updated successfully');
     } catch (error) {
-        if (error.name === 'CastError') {
-            return res.status(400).json({
-                status: 'error',
-                message: 'Invalid app ID'
-            });
-        }
-        res.status(500).json({
-            status: 'error',
-            message: error.message || 'Failed to update app'
-        });
+        return handleError(res, error, 'Failed to update app');
     }
 };
 
@@ -160,29 +152,14 @@ const deleteApp = async (req, res) => {
         const app = await App.findById(req.params.id);
 
         if (!app) {
-            return res.status(404).json({
-                status: 'error',
-                message: 'App not found'
-            });
+            return sendNotFound(res, 'App not found');
         }
 
         await App.findByIdAndDelete(req.params.id);
 
-        res.status(200).json({
-            status: 'success',
-            message: 'App deleted successfully'
-        });
+        return sendDeleted(res, 'App deleted successfully');
     } catch (error) {
-        if (error.name === 'CastError') {
-            return res.status(400).json({
-                status: 'error',
-                message: 'Invalid app ID'
-            });
-        }
-        res.status(500).json({
-            status: 'error',
-            message: error.message || 'Failed to delete app'
-        });
+        return handleError(res, error, 'Failed to delete app');
     }
 };
 

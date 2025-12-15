@@ -1,0 +1,356 @@
+{
+    "info": {
+        "_postman_id": "component-type-api",
+        "name": "Component Type API",
+        "description": "Zero-Code Platform - Component Type Management API for Sidebar",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Component Types",
+            "item": [
+                {
+                    "name": "Initialize Default Component Types",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types/initialize",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types",
+                                "initialize"
+                            ]
+                        },
+                        "description": "Initialize all 28 default component types (button, input, textarea, etc.) with icons and categories. Run this first to set up the sidebar."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Component Types (Sidebar)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types?visible=true&category=",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types"
+                            ],
+                            "query": [
+                                {
+                                    "key": "visible",
+                                    "value": "true",
+                                    "description": "Filter by visibility (true = show in sidebar)"
+                                },
+                                {
+                                    "key": "category",
+                                    "value": "",
+                                    "description": "Optional: Filter by category (basic, form, layout, media, navigation, data, custom)"
+                                }
+                            ]
+                        },
+                        "description": "Get all component types for sidebar display. Returns all visible types sorted by order."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Component Types by Category",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types?category=basic",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types"
+                            ],
+                            "query": [
+                                {
+                                    "key": "category",
+                                    "value": "basic",
+                                    "description": "Category: basic, form, layout, media, navigation, data, custom"
+                                }
+                            ]
+                        },
+                        "description": "Get component types filtered by category"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Component Type by Type Name",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types/:type",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types",
+                                ":type"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "type",
+                                    "value": "button",
+                                    "description": "Component type (button, input, textarea, etc.)"
+                                }
+                            ]
+                        },
+                        "description": "Get a single component type by its type name"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Custom Component Type",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"type\": \"custom-button\",\n    \"name\": \"Custom Button\",\n    \"description\": \"A custom styled button component\",\n    \"icon\": \"🎨\",\n    \"category\": \"custom\",\n    \"defaultStyles\": {\n        \"padding\": \"12px 24px\",\n        \"backgroundColor\": \"#0766ff\",\n        \"color\": \"#ffffff\",\n        \"borderRadius\": \"8px\",\n        \"fontSize\": \"14px\",\n        \"fontWeight\": \"600\"\n    },\n    \"defaultProperties\": {\n        \"text\": \"Click Me\",\n        \"variant\": \"primary\"\n    },\n    \"defaultData\": {\n        \"label\": \"Custom Button\"\n    },\n    \"visible\": true,\n    \"order\": 100\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types"
+                            ]
+                        },
+                        "description": "Create a custom component type with default styles and properties"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Component Type",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Updated Button Name\",\n    \"description\": \"Updated description\",\n    \"icon\": \"🔘\",\n    \"category\": \"basic\",\n    \"defaultStyles\": {\n        \"padding\": \"15px 30px\",\n        \"backgroundColor\": \"#ff073d\",\n        \"color\": \"#ffffff\",\n        \"borderRadius\": \"10px\"\n    },\n    \"defaultProperties\": {\n        \"text\": \"Submit\",\n        \"variant\": \"primary\"\n    },\n    \"visible\": true,\n    \"order\": 1\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component Type ID"
+                                }
+                            ]
+                        },
+                        "description": "Update a component type (name, icon, default styles, etc.)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Hide Component Type from Sidebar",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"visible\": false\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component Type ID"
+                                }
+                            ]
+                        },
+                        "description": "Hide a component type from the sidebar"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show Component Type in Sidebar",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"visible\": true\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component Type ID"
+                                }
+                            ]
+                        },
+                        "description": "Show a component type in the sidebar"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Component Type Order",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"order\": 5\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component Type ID"
+                                }
+                            ]
+                        },
+                        "description": "Update the display order of a component type in the sidebar"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Component Type",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/component-types/:id",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "component-types",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Component Type ID"
+                                }
+                            ]
+                        },
+                        "description": "Delete a component type"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Component type management endpoints for sidebar"
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:5001",
+            "type": "string"
+        }
+    ]
+}
