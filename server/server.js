@@ -80,7 +80,6 @@ const corsOptions = {
     preflightContinue: false,
     optionsSuccessStatus: 204
 };
-
 app.use(cors(corsOptions));
 
 // Rate limiting
@@ -100,8 +99,8 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 
-// Serve static files (if needed)
-// app.use('/uploads', express.static('uploads'));
+// Serve static files (uploaded images)
+app.use('/uploads', express.static('uploads'));
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
@@ -155,11 +154,13 @@ const appRoutes = require('../appManagement/routes/appRoutes');
 const screenRoutes = require('../appManagement/routes/screenRoutes');
 const componentRoutes = require('../componentManagement/routes/componentRoutes');
 const componentTypeRoutes = require('../componentManagement/routes/componentTypeRoutes');
+const imageRoutes = require('../imageManagement/routes/imageRoutes');
 
 app.use('/api/apps', appRoutes);
 app.use('/api/screens', screenRoutes);
 app.use('/api/components', componentRoutes);
 app.use('/api/component-types', componentTypeRoutes);
+app.use('/api/images', imageRoutes);
 
 // Basic error handling middleware
 app.use((req, res, next) => {

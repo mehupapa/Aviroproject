@@ -34,6 +34,14 @@ CORS_ORIGIN=https://your-frontend-domain.com
 CORS_ORIGINS=https://domain1.com,https://domain2.com
 ```
 
+### Cloudinary Configuration (Required for Image Uploads)
+```
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+```
+**Note:** Get these from your Cloudinary dashboard at https://cloudinary.com
+
 ## How to Add in Vercel
 
 1. Go to your Vercel project dashboard
@@ -57,5 +65,6 @@ CORS_ORIGINS=https://domain1.com,https://domain2.com
 - [ ] Add `MONGODB_URI` with your MongoDB connection string
 - [ ] Add `MONGODB_DB_NAME` if you want to specify a database name
 - [ ] Add `CORS_ORIGIN` if you have a frontend that needs to access the API
+- [ ] Add `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, and `CLOUDINARY_API_SECRET` for image uploads
 - [ ] Redeploy after adding environment variables
 

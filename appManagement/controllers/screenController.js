@@ -138,8 +138,20 @@ const updateScreen = async (req, res) => {
         }
 
         // Update fields
-        if (data) screen.data = data;
-        if (position) screen.position = position; // Update position when dragging
+        if (data) {
+            // Merge data object to preserve existing fields like 'type'
+            screen.data = {
+                ...screen.data,
+                ...data
+            };
+        }
+        if (position) {
+            // Merge position object to preserve existing coordinates
+            screen.position = {
+                ...screen.position,
+                ...position
+            };
+        }
         if (hidden !== undefined) screen.hidden = hidden;
         if (components !== undefined) screen.components = components;
         if (status) screen.status = status;
